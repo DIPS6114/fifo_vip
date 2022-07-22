@@ -1,23 +1,27 @@
-class write_fifo_env extends uvm_env;
+
+`include "fifo_agent1.sv"
+`include "fifo_agent2.sv"
+
+
+class fifo_env extends uvm_env;
   
-  `uvm_component_utils(write_fifo_env);
+  `uvm_component_utils(fifo_env)
   
- write_fifo_agent ag1;
- 
+  fifo_agent1 agent1;
+  fifo_agent2 agent2;
+  //fifo_scoreboard scoreboard;
   
-  
-   function new(string name, uvm_component parent);
-         super.new(name, parent);
-     endfunction
+  function new(string name="fifo_env",uvm_component parent=null);
+    super.new(name,parent);
+  endfunction
   
   function void build_phase(uvm_phase phase);
     super.build_phase(phase);
-    ag1=write_fifo_agent::type_id::create("ag1",this);
+    agent1=fifo_agent1::type_id::create("agent1",this);
+    agent2=fifo_agent2::type_id::create("agent2",this);
+    //scoreboard=fifo_scoreboard::type_id::create("scoreboard",this);
   endfunction
   
-   function void connect_phase(uvm_phase phase);
-     super.connect_phase(phase);
-   endfunction  
- 
-  
 endclass
+                                        
+  
