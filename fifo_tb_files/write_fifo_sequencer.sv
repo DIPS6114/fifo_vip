@@ -1,16 +1,14 @@
-class write_fifo_sequencer extends uvm_sequencer#(write_fifo_seq_item);
+class fifo_sequencer extends uvm_sequencer;
   
-  `uvm_component_utils(write_fifo_sequencer);
+  `uvm_component_utils(fifo_sequencer)
   
-  function new(string name , uvm_component parent);
+  function new(string name="fifo_sequencer", uvm_component parent=null);
     super.new(name,parent);
-    
   endfunction
+  
   
   function void build_phase(uvm_phase phase);
     super.build_phase(phase);
-    
   endfunction
   
 endclass
-  
